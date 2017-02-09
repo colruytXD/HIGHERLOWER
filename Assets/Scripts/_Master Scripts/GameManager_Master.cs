@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class GameManager_Master : MonoBehaviour {
 
+    [SerializeField]
+    public int maxNumberValue, minNumberValue;
+
+    public int oldNumber;
+    public int newNumber;
+
     public delegate void GeneralEventHandler();
 
     public event GeneralEventHandler EventPauseGame;
@@ -28,11 +34,13 @@ public class GameManager_Master : MonoBehaviour {
 
     public void CallEventRightAnswer()
     {
+        Debug.Log("Right answer");
         EventRightAnswer();
     }
 
     public void CallEventWrongAnwer()
     {
+        Debug.Log("Wrong answer");
         EventWrongAnwer();
     }
 
@@ -44,5 +52,10 @@ public class GameManager_Master : MonoBehaviour {
     public void CallEventGoToGameMenu()
     {
         EventGoToGameMenu(1);
+    }
+
+    void Awake()
+    {
+        oldNumber = Random.Range(minNumberValue, maxNumberValue);
     }
 }
