@@ -13,8 +13,8 @@ public class GameManager_Master : MonoBehaviour {
 
     public delegate void SceneLoadManager(int SceneNr);
 
-    public event GeneralEventHandler EventGoToMainMenu;
-    public event GeneralEventHandler EventGoToGameMenu;
+    public event SceneLoadManager EventGoToMainMenu;
+    public event SceneLoadManager EventGoToGameMenu;
 
     public void CallEventPauseGame()
     {
@@ -38,11 +38,11 @@ public class GameManager_Master : MonoBehaviour {
 
     public void CallEventGoToMainMenu()
     {
-        EventGoToMainMenu();
+        EventGoToMainMenu(0);
     }
 
     public void CallEventGoToGameMenu()
     {
-        EventGoToMainMenu();
+        EventGoToGameMenu(1);
     }
 }
