@@ -9,6 +9,9 @@ public class MainMenuNumbers_Animate : MonoBehaviour {
 
     bool move = false;
 
+    [SerializeField, Range(0, 1000)]
+    float speed = 100; 
+
 	void OnEnable() 
 	{
 		SetInitialReferences();
@@ -29,7 +32,7 @@ public class MainMenuNumbers_Animate : MonoBehaviour {
     {
         if(move)
         {
-            gameObject.transform.position = transform.position - new Vector3(0, 5);
+            gameObject.transform.position = transform.position - new Vector3(0, 5) * Time.deltaTime * speed;
         }
 
         if(transform.position.y < -10)

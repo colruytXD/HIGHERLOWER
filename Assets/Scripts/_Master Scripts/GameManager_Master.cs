@@ -64,5 +64,6 @@ public class GameManager_Master : MonoBehaviour {
     {
         oldNumber = Random.Range(minNumberValue, maxNumberValue);
         HighScore = PlayerPrefs.GetInt("Highscore");
+        Screen.fullScreen = false;
     }
 }

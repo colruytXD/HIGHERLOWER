@@ -29,7 +29,6 @@ public class MainMenuNumbers_Spawn : MonoBehaviour {
     int maxTxts;
 
     public List<GameObject> txts = new List<GameObject>();
-    int currentDisplayed = 0;
 
 	void OnEnable() 
 	{
@@ -48,7 +47,7 @@ public class MainMenuNumbers_Spawn : MonoBehaviour {
 
     public Vector3 GenerateRandomPos()
     {
-        Vector3 randomPos = new Vector2(Random.Range(0, resY), Random.Range(resX, maxHeight));
+        Vector3 randomPos = new Vector2(Random.Range(0, Screen.width), Random.Range(Screen.height, Screen.height * 2));
 
         return randomPos;
     }
