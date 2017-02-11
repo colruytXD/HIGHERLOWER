@@ -10,6 +10,11 @@ public class GameManager_Master : MonoBehaviour {
     public int oldNumber;
     public int newNumber;
 
+    public bool isPaused = false;
+
+    public int currentScore;
+    public int HighScore;
+
     public delegate void GeneralEventHandler();
 
     public event GeneralEventHandler EventPauseGame;
@@ -22,8 +27,9 @@ public class GameManager_Master : MonoBehaviour {
     public event SceneLoadManager EventGoToMainMenu;
     public event SceneLoadManager EventGoToGameMenu;
 
-    public void CallEventPauseGame()
+    public void CallEventTogglePauseGame()
     {
+        isPaused = !isPaused;
         EventPauseGame();
     }
 
@@ -40,7 +46,7 @@ public class GameManager_Master : MonoBehaviour {
 
     public void CallEventWrongAnwer()
     {
-        Debug.Log("Wrong answer");
+        Debug.Log("Wrong answer");        
         EventWrongAnwer();
     }
 
@@ -57,5 +63,6 @@ public class GameManager_Master : MonoBehaviour {
     void Awake()
     {
         oldNumber = Random.Range(minNumberValue, maxNumberValue);
+        HighScore = PlayerPrefs.GetInt("Highscore");
     }
 }
