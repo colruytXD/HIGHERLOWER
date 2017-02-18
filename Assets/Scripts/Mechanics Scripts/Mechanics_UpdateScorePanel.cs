@@ -5,26 +5,27 @@ using UnityEngine;
 public class Mechanics_UpdateScorePanel : MonoBehaviour {
 
     GameManager_Master gameManagerMaster;
+
     [SerializeField]
-    Text txtCurrentScore, txtHighScore;
+    Text txtCurrentScore;
 
 	void OnEnable() 
 	{ 
 		SetInitialReferences();
         gameManagerMaster.EventRightAnswer += UpdateCurrentScore;
-        gameManagerMaster.EventRightAnswer += UpdateHighscore;
         
+        txtCurrentScore = GetComponent<Text>();
 	} 
 
     void Start()
     {
-        UpdateHighscore();
+        UpdateCurrentScorePanel();
     }
-	
-	void OnDisable() 
+
+
+    void OnDisable() 
 	{
         gameManagerMaster.EventRightAnswer -= UpdateCurrentScore;
-        gameManagerMaster.EventRightAnswer -= UpdateHighscore;
     } 
 	
 	void SetInitialReferences() 
@@ -35,20 +36,11 @@ public class Mechanics_UpdateScorePanel : MonoBehaviour {
     void UpdateCurrentScore()
     {
         gameManagerMaster.currentScore += 1;
-        txtCurrentScore.text = "Current score: " + gameManagerMaster.currentScore.ToString();
-    }
+        UpdateCurrentScorePanel();
+    }    
 
-    void UpdateHighscore()
+    void UpdateCurrentScorePanel()
     {
-        if(gameManagerMaster.currentScore > gameManagerMaster.HighScore)
-        {
-            gameManagerMaster.HighScore = gameManagerMaster.currentScore;
-            PlayerPrefs.SetInt("Highscore", gameManagerMaster.HighScore);
-            txtHighScore.text = "Highscore: " +  gameManagerMaster.HighScore.ToString();
-        }
-        else
-        {
-            txtHighScore.text = "Highscore: " + gameManagerMaster.HighScore.ToString();
-        }
+        txtCurrentScore.text = "Current score: " + gameManagerMaster.currentScore.ToString();
     }
 }
